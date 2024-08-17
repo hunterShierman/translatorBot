@@ -1,5 +1,7 @@
 import os
 from openai import OpenAI
+import re
+
 
 client = OpenAI(
     # This is the default and can be omitted
@@ -7,39 +9,105 @@ client = OpenAI(
 )
 
 
-# chat_completion = client.chat.completions.create(
-#     messages=[
-#         {
-#             "role": "system", "content": "You are a translating chatbot. Respond to me in the language that I speak to you. You are extremly friendly and love to make new friends. If a user asks a question outside your expertise, politely inform them and suggest contacting the relevant department. Be empathetic and patient, especially with users who may be frustrated or confused. Limit your response to two sentences.",
-#             "role": "user", "content": "Hello my name is Hunter, nice to meet you!",
-#         } 
-#     ],
-#     model="gpt-4o-mini",
-# )
-# print(chat_completion.choices[0].message.content)
+#translator
+def myTranslator(text, sourceLanguage, targetLanguage):
 
-def chat_with_gpt(prompt):
+    system_message = f"You are a translation chatbot who speaks {sourceLanguage} and {targetLanguage}. Translate the sentence I give you into {targetLanguage}."
 
     chat_completion = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": text},
+    ]
+    )
+    
+    response = chat_completion.choices[0].message.content.strip()
+
+    return response
+
+
+# chat freely mode -----------------------------------------------------------------------------------------------------------------------------------
+
+#english to french
+def practice_french():
+
+    keep_going = True
+    print("Chatbot: Bienvenue sur TranslateHac - type quit, exit, or bye to leave")
+    print("Chatbot: Quel est ton nom?")
+
+    while keep_going is True:
+
+        prompt = input("You: ")
+        system_message = f"You are a translation chatbot who speaks french and english. only speak to me in french. You are a friendly assistant who provides concise responses. Please limit your responses to three sentences.",
+        
+        chat_completion = client.chat.completions.create(
         messages=[
             {
-                "role": "system", "content": "You are a translating chatbot. You are a friendly assistant who provides concise responses. Please limit your responses to three sentences. Respond to me in the language that I speak to you. You are very friendly and love to make new friends. Be empathetic and patient, especially with users who may be frustrated or confused.",
+                "role": "system", "content": system_message,
                 "role": "user", "content": prompt,
             } 
         ],
         model="gpt-4o-mini",
-    )
-    return chat_completion.choices[0].message.content
+        )
 
-keep_going = True
+        if prompt.lower() in ["quit", "exit", "bye"]:
+            print("Chat: Thanks for speaking with me. au revoir et bonne journée.")
+            break 
 
-while keep_going is True:
-    user_input = input("You: ")
+        response = chat_completion.choices[0].message.content.strip()
 
-    if user_input.lower() in ["quit", "exit", "bye"]:
-        print("Chat: Thanks for speaking with me. Goodbye and have a good day.")
-        break 
+        sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', response)
 
-    response = chat_with_gpt(user_input)
-    print("Chatbot: ", response)
+        # Check if there are more than three sentences
+        if len(sentences) > 3:
+            response = ' '.join(sentences[:3])
+
+
+        return response
+    
+
+#french to english
+def practice_english():
+
+    keep_going = True
+    print("Chatbot: Bienvenue sur TranslateHac - type quit, exit, or bye to leave")
+    print("Chatbot: What is your name?")
+
+    while keep_going is True:
+
+        prompt = input("You: ")
+        system_message = f"You are a translation chatbot who speaks french and english. only speak to me in english. You are a friendly assistant who provides concise responses. Please limit your responses to three sentences.",
+        
+        chat_completion = client.chat.completions.create(
+        messages=[
+            {
+                "role": "system", "content": system_message,
+                "role": "user", "content": prompt,
+            } 
+        ],
+        model="gpt-4o-mini",
+        )
+
+        if prompt.lower() in ["quit", "exit", "bye"]:
+            print("Chat: merci d'avoir parlé avec moi, goodbye and have a good day.")
+            break 
+
+        response = chat_completion.choices[0].message.content.strip()
+
+        sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', response)
+
+        # Check if there are more than three sentences
+        if len(sentences) > 3:
+            response = ' '.join(sentences[:3])
+
+        return response
+    
+
+# testing
+# myTranslator("I am 19 years old and I go to the university of waterloo", "english", "french")
+# myTranslator("Je suis très heureux de vous rencontrer.", "french", "english")
+# # practice_french()
+# # practice_english()
+
     
