@@ -7,6 +7,7 @@ body, h1, h2, p {
 html, body {
     height: 100%;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -180,24 +181,24 @@ footer {
         width: 100%;
       }
 
-    /* Chatbot Content Styles*/
+    /* Translate Content Styles*/
 
-    #chatbot .chatbot-container {
+    #translate .translate-container {
         position: relative;
     }
 
-    #chatbot .chatbot-content {
+    #translate .translate-content {
         color:#f4f4f4;
         background-color:#000;
         text-align: justify;
         padding: 40px;
     }
 
-    #chatbot h1 {
+    #translate h1 {
         color:#ddd;
     }
 
-    #chatbot h2 {
+    #translate h2 {
         font-size: 60px;
         font-weight: 900;
         line-height: 1.2em;
@@ -206,18 +207,27 @@ footer {
         text-align: center;
     }
 
-    #chatbot p {
+    #translate h3 {
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.2em;
+        color: #5c5c5c;
+        padding: 20px;
         text-align: center;
     }
 
-    #chatbot .button-group {
+    #translate p {
+        text-align: center;
+    }
+
+    #translate .button-group {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 0.5rem;
       }
 
-      #chatbot .english-french, .french-english, .record, .translate, .play {
+      #translate .english-french, .french-english, .record, .translate, .play {
         font-size: 1rem;
         font-weight: 700;
         line-height: 46px;
@@ -235,7 +245,7 @@ footer {
         z-index: 1;
       }
 
-      #chatbot .english-french:before, .french-english:before, .record:before, .translate:before, .play:before {
+      #translate .english-french:before, .french-english:before, .record:before, .translate:before, .play:before {
         content: "";
         width: 0%;
         height: 100%;
@@ -249,9 +259,27 @@ footer {
         transition: width 0.3s;
       }
 
-      #chatbot .english-french:hover:before, .french-english:hover:before, .record:hover:before, .translate:hover:before, .play:hover:before {
+      #translate .english-french:hover:before, .french-english:hover:before, .record:hover:before, .translate:hover:before, .play:hover:before {
         width: 100%;
       }
+
+    /* Chatbot Content Styles*/
+    #chatbot .chatbot-container {
+        position: relative;
+    }
+
+    #chatbot .chatbot-content {
+        color:#000;
+        background-color:#f4f4f4;
+        text-align: justify;
+        padding: 40px;
+    }
+
+    #chatbot h1 {
+        color:#000;
+    }
+
+
 
     /* About Content Styles*/
 
@@ -260,14 +288,14 @@ footer {
     }
 
     #about .about-content {
-        color:#000;
-        background-color:#f4f4f4;
+        color:#f4f4f4;
+        background-color:#000;
         text-align: justify;
         padding: 40px;
     }
 
     #about h1 {
-        color:#000;
+        color:#f4f4f4;
     }
     
 
