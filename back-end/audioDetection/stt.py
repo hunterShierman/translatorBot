@@ -1,4 +1,4 @@
-import subprocess
+#import subprocess
 import speech_recognition as sr
 import pyttsx3
 
@@ -13,7 +13,7 @@ r = sr.Recognizer()
 def record():
     #basically an endless loop 
     #so that it does not end when it picks up an undecodeable noise
-    while(1):
+    while True:
         try:
             with sr.Microphone() as source:
                 r.adjust_for_ambient_noise(source, duration=0.2)
@@ -26,24 +26,23 @@ def record():
                 
                 return text
 
-        except sr.RequestError as e:
-            print("Could not request results; {e}")
+        except sr.RequestError:
+            print("Could not request results.")
         except sr.UnknownValueError:
              print("Could not understand the audio, please try again.")
     
 
 def output(text):
-    f = open("output.txt", "a")
-    f.write(text)
-    f.write("\n")
-    f.close()
-    return
+    with open("back-end/audioDetection/output.txt", "a") as f:
+        f.write(text + "\n")
 
-def send_text(text):
-    subprocess.run(["python", "test2.py", text])
+def main():
+    while True:
 
+        text = record()
+        if text:
+            output(text)
+            print(text)
 
-while(1):
-    text = record()
-    output(text)
-    print("Writing text...")
+if __name__ == "__main__":
+    main()
