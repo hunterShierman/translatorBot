@@ -1,6 +1,8 @@
 from gtts import gTTS
 import os
 
+text = "Welcome to our chatbot and language learner."
+filename = 'back-end/audioDetection/output.txt'
 
 def text_to_speech(text, language, filename):
     """
@@ -20,7 +22,7 @@ def text_to_speech(text, language, filename):
         print(f"An error occurred: {e}")
 
 def main():
-    text = input("back-end/audioDetection/output.txt")
+    text = input(open('back-end/audioDetection/output.txt'))
 
     # Use the same filename for English and French to overwrite the files
     english_filename = "speech_en.mp3"
