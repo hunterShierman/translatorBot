@@ -9,7 +9,7 @@ import pyttsx3
 
 
 r = sr.Recognizer()
-
+language = 'en'
 def record():
     #basically an endless loop 
     #so that it does not end when it picks up an undecodeable noise
@@ -22,7 +22,11 @@ def record():
                 audio = r.listen(source)
 
                 #use google to recognize audio
-                text = r.recognize_google(audio)
+                if language == "en":
+                    text = r.recognize_google(audio)
+
+                else:
+                    text = r.recognize_google(audio, languange="fr=FR")
                 
                 return text
 
