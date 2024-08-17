@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HACBot</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -47,9 +48,14 @@
                     <h1 class="translate-title">Translate</h1>
                     <hr>
                     <h2>1. Choose Your Language</h2>
+                    <div class="flags">
+                        <img id="en-flag" src="images/english.png" alt="Image 1" class="image">
+                        <img id="arrow" src="images/arrow.png" alt="Image 3" class="image">
+                        <img id="fr-flag" src="images/french.png" alt="Image 2" class="image">
+                    </div>
                     <div class="button-group">
-                        <a href="" class="english-french">English -> French</a>
-                        <a href="" class="french-english">French -> English</a>
+                        <a class="english-french" onclick="englishfrench()">English -> French</a>
+                        <a class="french-english" onclick="frenchenglish()">French -> English</a>
                     </div>
 
                     <h2>2. Record Your Phrase</h2>
