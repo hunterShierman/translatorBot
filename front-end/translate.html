@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACBot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/robot.png" alt="Logo" class="logo-img">
+                HACBot - Translator Bot
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="translate.html">Translate</a></li>
+                    <li><a href="chatbot.html">Practice</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main>        
+        <!-- Translate Section -->
+        <section id="translate">
+            <div class="translate-container">
+                <div class="translate-content">
+                    <h1 class="translate-title">Translate</h1>
+                    <hr>
+                    <h2>1. Choose Your Language</h2>
+                    <div class="flags">
+                        <img id="en-flag" src="images/english.png" alt="English Flag" class="image">
+                        <img id="arrow" src="images/arrowblack.png" alt="Arrow" class="image">
+                        <img id="fr-flag" src="images/french.png" alt="French Flag" class="image">
+                    </div>
+                    <div class="button-group">
+                        <a class="english-french" onclick="englishfrench()">English -> French</a>
+                        <a class="french-english" onclick="frenchenglish()">French -> English</a>
+                    </div>
+
+                    <h2>2. Record Your Phrase</h2>
+                    <div class="button-group">
+                        <a href="" class="record">Record</a>
+                    </div>
+
+                    <h3>Your Phrase:</h3>
+                    <p>(User Phrase Here)</p>
+
+                    <h2>3. Translate</h2>
+                    <div class="button-group">
+                        <a href="" class="translate">Translate!</a>
+                    </div>
+                    
+                    <h3>Your Translated Phrase:</h3>
+                    <p>(Translated Phrase Here)</p>
+
+                    <h2>4. Play Your Phrase</h2>
+                    <div class="button-group">
+                        <a href="" class="play">Play</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>HAC Studios. Made for the 2024 Ignition Hacks Hackathon. All rights reserved.</p>
+    </footer>
+</body>
+</html>

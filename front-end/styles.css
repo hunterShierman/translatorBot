@@ -17,6 +17,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #f4f4f4;
 }
 
 *, *:before, *:after {
@@ -58,7 +59,10 @@ footer {
     padding: 10px;
     background-color: #333;
     color: #fff;
+    width: 100%;
 }
+
+
 
 /* Nav Styles */
     nav ul {
@@ -98,6 +102,7 @@ footer {
         padding: 200px;
         overflow: hidden;
         position: relative;
+        height: 825px;
         z-index: 1;
       }
 
@@ -188,22 +193,21 @@ footer {
     }
 
     #translate .translate-content {
-        color:#f4f4f4;
-        background-color:#000;
+        color:#000;
+        background-color:#f4f4f4;
         text-align: justify;
         padding: 40px;
-        
     }
 
     #translate h1 {
-        color:#ddd;
+        color:#000;
     }
 
     #translate h2 {
         font-size: 60px;
         font-weight: 900;
         line-height: 1.2em;
-        color: #ddd;
+        color: #000;
         padding: 40px;
         text-align: center;
     }
@@ -394,14 +398,32 @@ footer {
     }
 
     #about .about-content {
-        color:#f4f4f4;
-        background-color:#000;
+        color:#000;
+        background-color:#f4f4f4;
         text-align: justify;
         padding: 40px;
     }
 
     #about h1 {
-        color:#f4f4f4;
+        color:#000;
+    }
+
+    #about h2 {
+        font-size: 60px;
+        font-weight: 900;
+        line-height: 1.2em;
+        color: #000;
+        padding: 40px;
+        text-align: center;
+    }
+
+    #about h3 {
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.2em;
+        color: #5c5c5c;
+        padding: 20px;
+        text-align: center;
     }
     
 
