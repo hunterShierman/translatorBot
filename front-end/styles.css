@@ -192,6 +192,7 @@ footer {
         background-color:#000;
         text-align: justify;
         padding: 40px;
+        
     }
 
     #translate h1 {
@@ -220,11 +221,41 @@ footer {
         text-align: center;
     }
 
+    #translate .flags {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        padding: 20px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: space-around;
+    }
+    
+    #translate .image {
+        padding: 10px;
+        transition: transform 1s ease;
+
+        width: 100px;
+        height: 100px;
+
+    }
+
+    /* Swapped positions */
+    .swapped #en-flag {
+        transform: translateX(240%); /* Move the first image off-screen to the right */
+    }
+
+    .swapped #fr-flag {
+        transform: translateX(-240%); /* Bring the second image on-screen */
+    }
+
     #translate .button-group {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 0.5rem;
+        cursor:pointer;
       }
 
       #translate .english-french, .french-english, .record, .translate, .play {
