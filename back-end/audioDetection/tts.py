@@ -1,17 +1,35 @@
-#this is the text to speech code
 from gtts import gTTS
 import os
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+import time
 
+class Handler(FileSystemEventHandler):
+    def __init__(self, filename):
+        self.filename = filename
 
-#this is the text you want to make audio
-newtext = 'Welcome to our translator bot. How can I help you today?'
+    def on_modified(self, event):
+        if event.src_path.endswith(self.filename):
+            with open(self.filename, 'r') as file:
+                newtext = file.read().strip()
+                print("New content detected:", newtext)
 
-#figure how to make it french or whatever
-language = 'en'
+                # Convert to speech
+                language = 'en'
+                myobj = gTTS(text=newtext, lang=language, slow=False)
+                myobj.save("new.mp3")
+                os.system("start new.mp3")
 
-myobj = gTTS(text=newtext, lang = language, slow = False)
+if __name__ == '__main__':
+    filename = "output.txt"  # Replace with your actual text file name
+    event_handler = Handler(filename)
+    observer = Observer()
+    observer.schedule(event_handler, path='.', recursive=False)
+    observer.start()
 
-myobj.save("new.mp3")
-
-#this part will play the file
-os.system("start new.mp3")
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
