@@ -250,17 +250,17 @@ footer {
         transform: translateX(-240%); /* Bring the second image on-screen */
     }
 
-    #translate .button-group {
+    .button-group {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 0.5rem;
-        cursor:pointer;
       }
 
       #translate .english-french, .french-english, .record, .translate, .play {
         font-size: 1rem;
         font-weight: 700;
+        width: 46px;
         line-height: 46px;
         text-align: center;
         text-decoration: none;
@@ -274,6 +274,7 @@ footer {
         display: inline-block;
         position: relative;
         z-index: 1;
+        cursor:pointer;
       }
 
       #translate .english-french:before, .french-english:before, .record:before, .translate:before, .play:before {
@@ -288,10 +289,12 @@ footer {
         left: 0;
         z-index: -1;
         transition: width 0.3s;
+        cursor:pointer;
       }
 
       #translate .english-french:hover:before, .french-english:hover:before, .record:hover:before, .translate:hover:before, .play:hover:before {
         width: 100%;
+        cursor:pointer;
       }
 
     /* Chatbot Content Styles*/
@@ -309,6 +312,78 @@ footer {
     #chatbot h1 {
         color:#000;
     }
+
+    #chatbot h2 {
+        font-size: 60px;
+        font-weight: 900;
+        line-height: 1.2em;
+        color: #000;
+        padding: 40px;
+        text-align: center;
+    }
+
+    #chatbot h3 {
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.2em;
+        color: #5c5c5c;
+        padding: 20px;
+        text-align: center;
+    }
+
+    #chatbot p {
+        text-align: center;
+    }
+
+    #chatbot .training, .freeplay {
+        font-size: 1rem;
+        font-weight: 700;
+        width: 46px;
+        line-height: 46px;
+        text-align: center;
+        text-decoration: none;
+        min-width: 12.5rem;
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0 1.5rem;
+        background-color: #107EFF;
+        color: #fafbfc;
+        border-radius: 0.80rem;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        cursor:pointer;
+      }
+
+      #chatbot .training:before, .freeplay:before{
+        content: "";
+        width: 0%;
+        height: 100%;
+        background: #8F16FF;
+        opacity: 1;
+        border-radius: 0.80rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: width 0.3s;
+        cursor:pointer;
+      }
+
+      #chatbot .training:hover:before, .freeplay:hover:before {
+        width: 100%;
+        cursor:pointer;
+      }
+
+      #training-img, #freeplay-img {
+        height: 128px;
+        width: 128px;
+        padding: 10px;
+      } 
 
 
 
