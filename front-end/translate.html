@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HACBot</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+
 </head>
 <body>
     <!-- Header -->
@@ -57,15 +57,16 @@
 
                     <h2>3. Translate</h2>
                     <div class="button-group">
-                        <a href="" class="translate">Translate!</a>
+                        <button id="translate_button" class="translate">Translate!</button>
                     </div>
-                    
+
                     <h3>Your Translated Phrase:</h3>
-                    <p>(Translated Phrase Here)</p>
+                    <p id="translated_text">(Translated Phrase Here)</p>
+
 
                     <h2>4. Play Your Phrase</h2>
                     <div class="button-group">
-                        <a href="" class="play">Play</a>
+                        <button id="play_button" class="play">Play</button>
                     </div>
                 </div>
             </div>
@@ -101,3 +102,7 @@
         }
     });
 </script>
+
+</script>
+<script src="trans.js"></script>
+<script src="yap.js"></script>
