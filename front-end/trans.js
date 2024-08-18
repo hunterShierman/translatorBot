@@ -1,5 +1,5 @@
 // Function to perform the translation using OpenAI's API
-const YOUR_OPENAI_API_KEY = '';
+const YOUR_OPENAI_API_KEY = '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';
 
 async function translateText() {
     const text = document.getElementById('convert_text').value;
