@@ -11,7 +11,6 @@ html, body {
 }
 
 body {
-    font-family: 'Trebuchet MS', sans-serif;
     line-height: 1.6;
     color: #333;
     display: flex;
@@ -22,6 +21,7 @@ body {
 
 *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 /* Header Styles */
@@ -162,7 +162,7 @@ footer {
         padding: 0 1.5rem;
         background-color: #107EFF;
         color: #fafbfc;
-        border-radius: 0.25rem;
+        border-radius: 0.80rem;
         display: inline-block;
         position: relative;
         z-index: 1;
@@ -174,7 +174,7 @@ footer {
         height: 100%;
         background: #8F16FF;
         opacity: 1;
-        border-radius: 0.25rem;
+        border-radius: 0.80rem;
         position: absolute;
         top: 0;
         left: 0;
@@ -274,7 +274,7 @@ footer {
         padding: 0 1.5rem;
         background-color: #107EFF;
         color: #fafbfc;
-        border-radius: 0.25rem;
+        border-radius: 0.80rem;
         display: inline-block;
         position: relative;
         z-index: 1;
@@ -287,7 +287,7 @@ footer {
         height: 100%;
         background: #8F16FF;
         opacity: 1;
-        border-radius: 0.25rem;
+        border-radius: 0.80rem;
         position: absolute;
         top: 0;
         left: 0;
@@ -311,6 +311,7 @@ footer {
         background-color:#f4f4f4;
         text-align: justify;
         padding: 40px;
+        padding-bottom: 0px;
     }
 
     #chatbot h1 {
@@ -354,7 +355,11 @@ footer {
         text-align: center;
     }
 
-    #chatbot .training, .freeplay {
+    #begin-chat {
+        padding-bottom: 30px;
+    }
+
+    #chatbot .begin-chat {
         font-size: 1rem;
         font-weight: 700;
         width: 46px;
@@ -366,19 +371,15 @@ footer {
         box-sizing: border-box;
         padding: 0 1.5rem;
         background-color: #107EFF;
-        color: #fafbfc;
+        color: #f4f4f4;
         border-radius: 0.80rem;
         display: inline-block;
         position: relative;
         z-index: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
         cursor:pointer;
       }
 
-      #chatbot .training:before, .freeplay:before{
+      #chatbot .begin-chat:before {
         content: "";
         width: 0%;
         height: 100%;
@@ -393,16 +394,195 @@ footer {
         cursor:pointer;
       }
 
-      #chatbot .training:hover:before, .freeplay:hover:before {
+      #chatbot .begin-chat:hover:before {
         width: 100%;
         cursor:pointer;
       }
 
-      #training-img, #freeplay-img {
+    #chatbot .training, .freeplay, .english-button, .french-button {
+        font-size: 1rem;
+        font-weight: 700;
+        width: 46px;
+        line-height: 46px;
+        text-align: center;
+        text-decoration: none;
+        min-width: 12.5rem;
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0 1.5rem;
+        padding-top: 10px;
+        background-color: #107EFF;
+        color: #fafbfc;
+        border-radius: 0.80rem;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        cursor:pointer;
+      }
+
+      #chatbot .training:before, .freeplay:before, .english-button:before, .french-button:before {
+        content: "";
+        width: 0%;
+        height: 100%;
+        background: #8F16FF;
+        opacity: 1;
+        border-radius: 0.80rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: width 0.3s;
+        cursor:pointer;
+      }
+
+      #chatbot .training:hover:before, .freeplay:hover:before, .english-button:hover:before, .french-button:hover:before {
+        width: 100%;
+        cursor:pointer;
+      }
+
+      #training-img, #freeplay-img, #english-button-img, #french-button-img {
         height: 128px;
         width: 128px;
         padding: 10px;
       } 
+      
+      /* Chatbot Window Styles*/
+
+      .chatbot-window-container {
+        display: none;
+        justify-content: center;
+        padding-bottom: 50px;
+        background: #f4f4f4;
+      }
+
+      .chatbot-window {
+        right: 40px;
+        bottom: 100px;
+        width: 800px;
+        overflow: hidden;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+        }
+    
+    .chatbot-window header {
+        background: #107EFF;
+        padding: 16px 0;
+        text-align: center;
+    }
+    
+    .chatbot-window header h2 {
+        color: #fff;
+        font-size: 1.4rem;
+    }
+    
+    .chatbot-window .chatbox {
+        height: 400px;
+        overflow-y: auto;
+        padding: 30px 20px 20px;
+    }
+    
+    .chatbox .chat {
+        display: flex;
+    }
+    
+    .chatbox .incoming span {
+        height: 32px;
+        width: 32px;
+        color: #fff;
+        align-self: flex-end;
+        background: #107EFF;
+        text-align: center;
+        line-height: 32px;
+        border-radius: 4px;
+        margin: 0 10px 7px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chatbox .incoming span #chatbot-img {
+        height: 20px;
+        width: 20px;
+        color: #fff;
+    }
+    
+    .chatbox .outgoing {
+        margin: 20px 0;
+        justify-content: flex-end;
+    }
+    
+    .chatbox .chat p {
+        color: #fff;
+        max-width: 75%;
+        font-size: 0.95rem;
+        padding: 12px 16px;
+        border-radius: 10px 10px 0 10px;
+        background: #107EFF;
+    }
+
+    #en-training, #fr-training, #en-freeplay, #fr-freeplay {
+        display: none;
+    }
+    
+    .chatbox .incoming p {
+        color: #000;
+        font-size: 0.95rem;
+        padding: 12px 16px;
+        border-radius: 10px 10px 10px 0;
+        background: #f2f2f2;
+    }
+    
+    .chatbot-window .chat-input {
+        
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        gap: 5px;
+        background: #fff;
+        padding: 5px 20px;
+        border-top: 1px solid #ccc;
+    }
+
+    .chat-input span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chat-input span #send-img {
+        height: 20px;
+        width: 20px;
+        color: #fff;
+    }
+    
+    .chat-input textarea {
+        height: 55px;
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 0.95rem;
+        resize: none;
+        padding: 16px 15px 16px 0;
+    }
+    
+    .chat-input span {
+        align-self: flex-end;
+        height: 55px;
+        line-height: 55px;
+        color: #107EFF;
+        font-size: 1.35rem;
+        cursor: pointer;
+        visibility: hidden;
+    }
+    
+    .chat-input textarea:valid ~ span {
+        visibility: visible;
+    }
 
 
 
