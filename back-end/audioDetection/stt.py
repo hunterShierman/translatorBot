@@ -1,5 +1,5 @@
 import speech_recognition as sr
-import pyttsx3
+
 
 #notes
 #first setp is for the python program to receive speech
@@ -25,7 +25,7 @@ def record():
                     text = r.recognize_google(audio)
 
                 else:
-                    text = r.recognize_google(audio, languange="fr=FR")
+                    text = r.recognize_google(audio, language="fr=FR")
                 
                 return text
 

@@ -336,6 +336,21 @@ footer {
         text-align: center;
     }
 
+    #translate .translate-container {
+    max-width: 800px; /* Set a max-width for the container */
+    margin: 0 auto;   /* Center the container horizontally */
+    padding: 20px;
+}
+
+    #translate #convert_text {
+    display: block;
+    margin: 20px auto; /* Adjust the margin as needed */
+    width: 300px; /* Ensure this matches the width of the text box in HTML */
+    padding: 10px;
+    text-align: center;
+}
+
+
     #chatbot p {
         text-align: center;
     }
