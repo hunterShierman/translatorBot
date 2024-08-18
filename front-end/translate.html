@@ -47,11 +47,13 @@
 
                     <h2>2. Record Your Phrase</h2>
                     <div class="button-group">
-                        <a href="" class="record">Record</a>
+                        <a id="click_to_record" class="record">Record</a>
+                        
                     </div>
 
                     <h3>Your Phrase:</h3>
-                    <p>(User Phrase Here)</p>
+                    <input type="text" id="convert_text" placeholder="Your speech will appear here" style="width: 300px;">
+                    
 
                     <h2>3. Translate</h2>
                     <div class="button-group">
@@ -75,3 +77,27 @@
     </footer>
 </body>
 </html>
+<script type="text/javascript">
+    document.getElementById('click_to_record').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default action of the anchor tag
+        
+        var speech = true;
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        const recognition = new SpeechRecognition();
+        recognition.interimResults = true;
+
+        recognition.addEventListener('result', function(e) {
+            const transcript = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+
+            document.getElementById("convert_text").value = transcript;
+        });
+
+        if (speech) {
+            recognition.start();
+        }
+    });
+</script>
