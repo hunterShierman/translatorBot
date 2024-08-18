@@ -6,6 +6,7 @@
     <title>HACBot</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
+    <script src="chatbot-script.js" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -36,20 +37,54 @@
                     <hr>
                     <h2>Mode</h2>
                     <div class="button-group">
-                        <div class="training">
+                        <div class="training" onclick="setTraining()">
                             <img id="training-img" src="images/clipboard.png" alt="Training" class="image">
                             <p>Training</p>
                         </div>
-                        <div class="freeplay">
+                        <div class="freeplay" onclick="setFreeplay()">
                             <img id="freeplay-img" src="images/chat.png" alt="Freeplay" class="image">
                             <p>Freeplay</p>
                         </div>
                     </div>
+                    <h2>Language</h2>
+                    <div class="button-group">
+                        <div class="english-button" onclick="setEnglish()">
+                            <img id="english-button-img" src="images/english.png" alt="English Button" class="image">
+                            <p>Practice English</p>
+                        </div>
+                        <div class="french-button" onclick="setFrench()">
+                            <img id="french-button-img" src="images/french.png" alt="French Button" class="image">
+                            <p>Practice French</p>
+                        </div>
+                    </div>
                     <h2>Chat!</h2>
-                    <p>(Chatbot console goes here)</p>
+                    <div class="button-group" id="begin-chat">
+                        <div class="begin-chat" onclick="settingsCheck()">Begin Chat</div>
+                    </div>
+                </div>
+            </div>   
+        </section>
+        <!-- Chatbot Window Section-->
+        <div class="chatbot-window-container" id="chatbot-window-container">
+            <div class="chatbot-window">
+                <header>
+                    <h2>Chatbot</h2>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span><img id="chatbot-img" src="images/chatbot.png" alt="Chatbot" class="image"></img></span>
+                        <p id="en-training">Hello! Welcome to TranslateHac's Training mode.</p>
+                        <p id="fr-training">Bonjour! Bienvenue dans le mode « Training » d'TranslateHac.</p>
+                        <p id="en-freeplay">Hello! Welcome to TranslateHac's Freeplay mode. What is your name?</p>
+                        <p id="fr-freeplay">Bonjour! Bienvenue dans le mode « Freeplay » d'TranslateHac. Quel est ton nom?</p>
+                    </li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Enter a message..." required></textarea>
+                    <span id="send-btn"><img id="send-img" src="images/send.png" alt="Send" class="image"></span>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
