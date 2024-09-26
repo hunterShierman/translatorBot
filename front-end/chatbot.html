@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HACBot</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 </head>
 <body>
     <!-- Header -->
@@ -58,6 +58,7 @@
                     <h2>Chat!</h2>
                     <div class="button-group" id="begin-chat">
                         <div class="begin-chat">Begin Chat</div>
+                        <div id="reset-button" class="begin-chat">Reset Me</div>
                     </div>
                 </div>
             </div>   
@@ -70,12 +71,16 @@
                 </header>
                 <ul class="chatbox">
                     <li class="chat incoming">
-                        <span><img id="chatbot-img" src="images/chatbot.png" alt="Chatbot" class="image"></img></span>
-                        <p id="en-training">Hello! Welcome to TranslateHac's Training mode.</p>
-                        <p id="fr-training">Bonjour! Bienvenue dans le mode « Training » d'TranslateHac.</p>
+                        <span><img class="chatbot-img" src="images/chatbot.png" alt="Chatbot" class="image"></img></span>
                         <p id="en-freeplay">Hello! Welcome to TranslateHac's Freeplay mode. What is your name?</p>
                         <p id="fr-freeplay">Bonjour! Bienvenue dans le mode « Freeplay » d'TranslateHac. Quel est ton nom?</p>
                     </li>
+
+                    <li class="newAddedText" style="list-style-type: none;">
+
+                    </li>
+
+
                 </ul>
                 <div class="chat-input">
                     <textarea placeholder="Enter a message..." required></textarea>
@@ -89,19 +94,23 @@
               <header>
                 <h2>Training mode</h2>
               </header>
-              <div class="message-area">
-                <div class="message received">
-                  <span id="support-avatar">SA</span>
-                  <p>Welcome to the testing center! click on the right answer. Type ready to start!</p>
-                </div>
-                <div class="message sent">
-                </div>
-                <!-- Additional messages can be added here -->
-              </div>
-              <div class="input-area">
+              <ul class="message-area">
+
+                <li class="message received">
+                    <span><img class="chatbot-img" src="images/chatbot.png" alt="Chatbot" class="image"></img></span>
+                    <p id="fr-training">Welcome to the testing center! click on the right answer.</p>
+                    <p id="en-training">Bienvenue au centre de test ! cliquez sur la bonne réponse.</p>
+                </li>
+                
+                <!-- add users messages -->
+                <li id="addedTestingText" style="list-style-type: none;"> 
+
+                </li>
+            </ul>
+              <!-- <div class="input-area">
                 <textarea placeholder="Type your message here..."></textarea>
                 <span id="send-button">&#10148;</span>
-              </div>
+              </div> -->
             </div>
           </div>
           

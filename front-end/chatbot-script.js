@@ -37,7 +37,7 @@ function initializeChat() {
     // Display the question
     setTimeout(() => {
         addMessage(question, 'received', options);
-    }, 600); // Delay for demo purposes
+    }, 600);
 }
 
 
@@ -50,7 +50,9 @@ function settingsCheck() {
         alert("Please select a mode!");
     } else {
 
+
         settingConfiguration();
+
 
         if (mode == "Freeplay") {
             document.getElementById("chatbot-window-container").style.display = "flex";
@@ -71,34 +73,36 @@ function settingConfiguration() {
 
     if (language === "english") {
         document.getElementById("en-freeplay").style.display = "block";
+        document.getElementById("fr-freeplay").style.display = "none";
+        document.getElementById("en-training").style.display = "block";
+        document.getElementById("fr-training").style.display = "none";
+
+
+
         system_message = "Only speak in English. You are a friendly chatbot who is helping the user learn English by quizzing them on English terms. Please limit your responses to three sentences."
-    } else {
+    } else if (language == "french") {
         document.getElementById("fr-freeplay").style.display = "block";
+        document.getElementById("en-freeplay").style.display = "none";
+        document.getElementById("fr-training").style.display = "block";
+        document.getElementById("en-training").style.display = "none";
         system_message = "Only speak in French. You are a friendly chatbot who is helping the user learn French by quizzing them on French terms. Please limit your responses to three sentences."
     }
-    // } else {
-    //     if (language === "English") {
-    //         document.getElementById("en-freeplay").style.display = "block";
-    //         system_message = "Only speak in English. You are a friendly chatbot who is helping the user learn English by engaging in conversation with them. Please limit your responses to three sentences."
-    //     } else {
-    //         document.getElementById("fr-freeplay").style.display = "block";
-    //         system_message = "Only speak in French. You are a friendly chatbot who is helping the user learn English by engaging in conversation with them. Please limit your responses to three sentences."
-    //     }
-    // }
+
 }
 
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
-const chatbox = document.querySelector(".chatbox");
+const chatbox = document.querySelector(".newAddedText");
+const fullChatBox = document.querySelector(".chatbox")
 
 let userMessage;
-const API_KEY = ""; //Enter the key here
+const API_KEY = "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"; //Enter the key here
 
 const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
-    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span><img id="chatbot-img" src="images/chatbot.png" alt="Chatbot" class="image"></img></span><p>${message}</p>`;
+    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span><img class="chatbot-img" src="images/chatbot.png" alt="Chatbot" class="image"></img></span><p>${message}</p>`;
     chatLi.innerHTML = chatContent;
     return chatLi;
 }
@@ -127,7 +131,7 @@ const generateResponse = (incomingChatLi) => {
         messageElement.textContent = data.choices[0].message.content;
     }).catch((error) => {
         messageElement.textContent = "Oops! Something went wrong. Please try again.";
-    }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
+    }).finally(() => fullChatBox.scrollTo(0, fullChatBox.scrollHeight));
 }
 
 const handleChat = () => {
@@ -137,19 +141,28 @@ const handleChat = () => {
 
     //Append the user's message to the chatbox
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-    chatbox.scrollTo(0, chatbox.scrollHeight);
+    fullChatBox.scrollTo(0, fullChatBox.scrollHeight);
 
     setTimeout(() => {
         // Display "Thinking..." message while waiting for the response
         const incomingChatLi = createChatLi("Thinking...", "incoming");
         chatbox.appendChild(incomingChatLi);
-        chatbox.scrollTo(0, chatbox.scrollHeight);
+        fullChatBox.scrollTo(0, fullChatBox.scrollHeight);
         generateResponse(incomingChatLi);
     }, 600);
 }
 
+document.getElementById('reset-button').addEventListener('click', () => {
+    // Clear the chatbox
+    chatbox.innerHTML = '';
+    messageArea.innerHTML = '';
+});
+
+
+
 const chatbox2 = document.querySelector('.support-chat-box');
-const messageArea = document.querySelector('.message-area');
+const messageArea = document.getElementById("addedTestingText");
+const messageFullArea = document.querySelector(".support-chat-box .message-area");
 const userInput = document.querySelector('.input-area textarea');
 const sendButton = document.querySelector('.input-area #send-button');
 
@@ -179,7 +192,7 @@ function generateQuestionWithOptions(questionLanguage) {
     let question, correctAnswer, options = [];
     let index, correctIndex;
 
-    if (questionLanguage === "english") {
+    if (questionLanguage === "french") {
         index = getRandomIndex(englishItems);
         correctAnswer = frenchItems[index];
         question = "How do you say " + englishItems[index] + " in French?";
@@ -187,7 +200,7 @@ function generateQuestionWithOptions(questionLanguage) {
         options.push(frenchItems[getRandomIndex(frenchItems)]); // Add a wrong answer
         options.push(frenchItems[index]); // Add the correct answer
 
-    } else if (questionLanguage === "french") {
+    } else if (questionLanguage === "english") {
         index = getRandomIndex(frenchItems);
         correctAnswer = englishItems[index];
         question = "Qu'est-ce que " + frenchItems[index] + " en anglais?";
@@ -208,104 +221,99 @@ function generateQuestionWithOptions(questionLanguage) {
 
 // Function to add a message to the chat area
 function addMessage(text, type) {
-    const messageDiv = document.createElement('div');
+    const messageDiv = document.createElement('li');
     messageDiv.className = `message ${type}`;
     
+    // Create the text element
     const p = document.createElement('p');
     p.textContent = text;
-    messageDiv.appendChild(p);
 
     if (type === 'received') {
+        // Create the span element
         const avatarSpan = document.createElement('span');
-        avatarSpan.id = 'support-avatar';
-        avatarSpan.textContent = 'SA'; // Avatar or initials
-        messageDiv.insertBefore(avatarSpan, p);
+        
+        // Create the image element
+        const avatarImg = document.createElement('img');
+        avatarImg.src = 'images/chatbot.png'; // Path to your avatar image
+        avatarImg.alt = 'Chatbot Avatar';
+        avatarImg.className = 'chatbot-img'; // Add a class if needed
+        
+        // Append the image to the span
+        avatarSpan.appendChild(avatarImg);
+
+        // Insert the span before the text element
+        messageDiv.appendChild(avatarSpan);
     }
 
+    // Append the text content
+    messageDiv.appendChild(p);
+
+    // Append the message div to the message area
     messageArea.appendChild(messageDiv);
-    messageArea.scrollTop = messageArea.scrollHeight; // Scroll to the bottom
+
+    // Scroll to the bottom
+    messageFullArea.scrollTop = messageFullArea.scrollHeight;
 }
+
 
 // Function to handle user messages
 function handleUserMessage() {
-    const userMessage = userInput.value.trim();
-    if (userMessage) {
-        addMessage(userMessage, 'sent');
-        userInput.value = ''; // Clear the input field
 
-        // Generate a random question and options
-        const { question, correctAnswer, options } = generateQuestionWithOptions(language);
+    const { question, correctAnswer, options } = generateQuestionWithOptions(language);
 
-        // Simulate chatbot response
-        setTimeout(() => {
-            addMessage(question, 'received');
+    // Simulate chatbot response
+    setTimeout(() => {
+        addMessage(question, 'received');
 
-            // Add options to the chat
-            options.forEach(option => {
-                addMessage(option, 'received');
-            });
+        // Add options to the chat
+        options.forEach(option => {
+            addMessage(option, 'received');
+        });
 
-            // Store the correct answer for later checking
-            chatbox.setAttribute('data-correct-answer', correctAnswer);
-        }, 600); // Delay for demo purposes
-    }
+        // Store the correct answer for later checking
+        chatbox.setAttribute('data-correct-answer', correctAnswer);
+    }, 600); // Delay for demo purposes
+
+    messageFullArea.scrollTop = messageFullArea.scrollHeight;
+
 }
 
 // Function to check the user's answer
 function checkAnswer(userAnswer) {
     const correctAnswer = chatbox.getAttribute('data-correct-answer');
-    if (userAnswer === correctAnswer) {
-        addMessage("Correct! Well done.", 'received');
-    } else {
 
-        if (language == "english") {
-            addMessage("Incorrect. The correct answer was: " + correctAnswer, 'received');
+    // check language
+    if (language == "french") {
+
+        if (userAnswer === correctAnswer) {
+            addMessage("Correct Well done.", "received");
         }
-
-        else if (language == "french") {
-            addMessage("Incorrect. La bonne réponse était: " + correctAnswer, 'received');
+        else {
+            addMessage("Incorrect. The correct answer was: " + correctAnswer, "received")
         }
 
     }
 
     if (language == "english") {
-        addMessage("type to continue: again", "received");
+
+        if (userAnswer === correctAnswer) {
+            addMessage("Correct bravo!", 'received');
+        }
+        else {
+            addMessage("Incorrect. La bonne réponse était: " + correctAnswer, 'received');
+        }
+
     }
 
-    else if (language == "french") {
-        addMessage("continuer: encore", "received");
-    }
-
-    // Clear the correct answer after checking
-    chatbox.removeAttribute('data-correct-answer');
-}
-
-// Optional: Handle Enter key for sending messages
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        handleUserMessage();
-    }
-});
-
-function resetTrainingMode() {
-    // Clear chat messages
-    chatbox.innerHTML = '';
     
-    // Optionally, you might want to hide or reset specific elements
-    document.getElementById('test-mode').style.display = 'none'; // Hide the test mode if you have that specific element
-    document.getElementById('en-training').style.display = 'none'; // Hide any training specific elements
-    document.getElementById('fr-training').style.display = 'none'; // Hide any training specific elements
-    
-    // Clear the correct answer attribute
+    // // Clear the correct answer after checking
     chatbox.removeAttribute('data-correct-answer');
+
 }
 
 
 
 sendChatBtn.addEventListener("click", handleChat);
-sendButton.addEventListener('click', handleUserMessage);
-
 
 document.querySelector('.training').addEventListener('click', setTraining);
 document.querySelector('.freeplay').addEventListener('click', setFreeplay);
@@ -318,6 +326,8 @@ messageArea.addEventListener('click', (e) => {
     if (e.target.tagName === 'P') {
         const selectedOption = e.target.textContent;
         checkAnswer(selectedOption);
+        handleUserMessage();
+
     }
 });
 

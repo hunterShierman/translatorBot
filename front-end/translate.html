@@ -76,33 +76,40 @@
     <footer>
         <p>HAC Studios. Made for the 2024 Ignition Hacks Hackathon. All rights reserved.</p>
     </footer>
-</body>
-</html>
-<script type="text/javascript">
-    document.getElementById('click_to_record').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default action of the anchor tag
-        
-        var speech = true;
-        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        const recognition = new SpeechRecognition();
-        recognition.interimResults = true;
-
-        recognition.addEventListener('result', function(e) {
-            const transcript = Array.from(e.results)
-                .map(result => result[0])
-                .map(result => result.transcript)
-                .join('');
-
-            document.getElementById("convert_text").value = transcript;
+    <script type="text/javascript">
+        document.getElementById('click_to_record').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default action of the anchor tag
+            
+            var speech = true;
+            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    
+            const recognition = new SpeechRecognition();
+            recognition.interimResults = true;
+    
+            recognition.addEventListener('result', function(e) {
+                const transcript = Array.from(e.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+    
+                document.getElementById("convert_text").value = transcript;
+            });
+    
+            if (speech) {
+                recognition.start();
+            }
         });
+    </script>
+    
+    </script>
+    <script src="trans.js"></script>
+    <script src="yap.js"></script>
+    <script type="module" src="main.js"></script>
 
-        if (speech) {
-            recognition.start();
-        }
-    });
-</script>
+</body>
 
-</script>
-<script src="trans.js"></script>
-<script src="yap.js"></script>
+
+</html>
+
+

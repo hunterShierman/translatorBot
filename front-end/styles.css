@@ -57,7 +57,7 @@ body {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #333;
+    background-color: black;
     color: #fff;
     width: 100%;
 }
@@ -505,7 +505,7 @@ footer {
         align-items: center;
     }
 
-    .chatbox .incoming span #chatbot-img {
+    .chatbot-img {
         height: 20px;
         width: 20px;
         color: #fff;

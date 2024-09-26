@@ -110,3 +110,12 @@ body {
 .chat-input textarea:valid ~ span {
     visibility: visible;
 }
+
+#reset-button{
+    border: 0;
+}
+
+#addedTestingText {
+    height: 400px; /* or max-height */
+    overflow-y: auto;
+}
