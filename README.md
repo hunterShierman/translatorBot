@@ -1,4 +1,7 @@
 # Chatbot Translation Project
+
+Video Demo: https://www.youtube.com/watch?v=SjBt2FPR33M
+
 This project features a multilingual chatbot that supports live audio translation and interactive quizzes in French and English. Built using HTML, CSS, and JavaScript, it leverages the OpenAI ChatGPT API for natural language processing and voice detection.
 
 Features
