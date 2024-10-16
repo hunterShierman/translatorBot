@@ -1,5 +1,3 @@
-
-
 let mode = null;
 let language = null;
 let system_message;
@@ -79,13 +77,13 @@ function settingConfiguration() {
 
 
 
-        system_message = "Only speak in English. You are a friendly chatbot who is helping the user learn English by quizzing them on English terms. Please limit your responses to three sentences."
+        system_message = "Answer the question in less then 20 words. Only speak in English. You are a friendly chatbot who is helping the user learn English by quizzing them on English terms."
     } else if (language == "french") {
         document.getElementById("fr-freeplay").style.display = "block";
         document.getElementById("en-freeplay").style.display = "none";
         document.getElementById("fr-training").style.display = "block";
         document.getElementById("en-training").style.display = "none";
-        system_message = "Only speak in French. You are a friendly chatbot who is helping the user learn French by quizzing them on French terms. Please limit your responses to three sentences."
+        system_message = "Answer the question in less than 20 words. Only speak in French. You are a friendly chatbot who is helping the user learn French by quizzing them on French terms."
     }
 
 }
@@ -96,7 +94,7 @@ const chatbox = document.querySelector(".newAddedText");
 const fullChatBox = document.querySelector(".chatbox")
 
 let userMessage;
-const API_KEY = "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"; //Enter the key here
+const API_KEY = ""; //Enter the key here
 
 const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
@@ -122,7 +120,8 @@ const generateResponse = (incomingChatLi) => {
             messages: [{
                 role: "system", content: system_message,
                 role: "user", content: userMessage
-            }]
+            }],
+            max_tokens: 80
         })
     }
 
@@ -311,17 +310,6 @@ function checkAnswer(userAnswer) {
 
 }
 
-
-
-sendChatBtn.addEventListener("click", handleChat);
-
-document.querySelector('.training').addEventListener('click', setTraining);
-document.querySelector('.freeplay').addEventListener('click', setFreeplay);
-document.querySelector('.english-button').addEventListener('click', setEnglish);
-document.querySelector('.french-button').addEventListener('click', setFrench);
-document.getElementById('begin-chat').addEventListener('click', settingsCheck);
-
-
 messageArea.addEventListener('click', (e) => {
     if (e.target.tagName === 'P') {
         const selectedOption = e.target.textContent;
@@ -330,4 +318,14 @@ messageArea.addEventListener('click', (e) => {
 
     }
 });
+
+sendChatBtn.addEventListener("click", handleChat);
+
+document.querySelector('.training').addEventListener('click', setTraining);
+document.querySelector('.freeplay').addEventListener('click', setFreeplay);
+document.querySelector('.english-button').addEventListener('click', setEnglish);
+document.querySelector('.french-button').addEventListener('click', setFrench);
+
+document.getElementById('begin-chat').addEventListener('click', settingsCheck);
+
 
